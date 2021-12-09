@@ -2,7 +2,7 @@ const navMenu = document.getElementById('nav-menu')
 const navToggle = document.getElementById('nav-toggle')
 const navClose = document.getElementById('nav-close')
 
-/* Toggle Mobile Menu */
+/*============= Toggle Mobile Menu =============*/
 
 if(navToggle){
     navToggle.addEventListener('click', () => {
@@ -16,7 +16,7 @@ if(navClose){
     });
 }
 
-/* Remove Mobile Menu */
+/*============= Remove Mobile Menu =============*/
 
 const navLink = document.querySelectorAll('.nav__link')
 
@@ -25,10 +25,9 @@ function linkAction() {
     navMenu.classList.remove('show-menu');
 }
 
-navLink.forEach(n => n.addEventListener('click', linkAction));
+navLink.forEach(event => event.addEventListener('click', linkAction));
 
-
-/* Skills */
+/*============= Skills Tabs =============*/
 
 const skillsContent = document.getElementsByClassName('skills__content')
 const skillsHeader = document.querySelectorAll('.skills__header')
@@ -49,29 +48,34 @@ skillsHeader.forEach((element) => {
     element.addEventListener('click', toggleSkills)
 });
 
-
 /*============= Qualification Tabs =============*/ 
 
 const tabs = document.querySelectorAll('[data-target]');
-const tabContents = document.querySelectorAll('[data-content]');
+const contents = document.querySelectorAll('[data-content]');
+const work = document.querySelector('[data-target="#work"]');
+const educ = document.querySelector('[data-target="#education"]');
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
+tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+
+           if (tab !== educ) {
+                educ.classList.remove("qualification__active");
+                work.classList.add("qualification__active");
+           } else {
+                educ.classList.add("qualification__active");
+                work.classList.remove("qualification__active");
+           }
+        
         const target = document.querySelector(tab.dataset.target)
 
-        tabContents.forEach((tabContent) => {
-            tabContent.classList.remove('qualification__active')
+        contents.forEach((content) => {
+            content.classList.remove("qualification__active");
         })
-        target.classList.add('qualification__active')
-
-        tab.forEach((tab) => {
-            tab.classList.remove('qualification__active')
-        })
-        tab.classList.add('qualification__active')
+        target.classList.add("qualification__active");
     })
 })
 
-/* Services Modal */
+/*=============  Services Modal =============*/
 
 const modalViews = document.querySelectorAll('.services__modal')
 const modalBtns = document.querySelectorAll('.services__button')
@@ -95,41 +99,33 @@ modalCloses.forEach((modalClose) => {
     })
 })
 
-/* Portfolio Swiper */
+/*============= Show Scroll Top =============*/
 
-let swiperPortfolio = new Swiper('.portfolio__container', {
-    cssMode: true,
-    loop: true,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-});
-
-/* Testimonial Swiper */
-
-let swiperTestimonial = new Swiper('.testimonial__container', {
-    loop: true,
-    grabCursor: true,
-    spaceBetween: 48,
-
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-    },
-    breakpoints: {
-        568: {
-            slidesPerView: 2,
-        }
+function scrollUp() {
+    const scrollUp = document.getElementById('scroll-up')
+    //When the scroll is higher than 500 viewport height, add the show-scroll class
+    if (window.scrollY >= 500) { 
+        scrollUp.classList.add('show-scroll');
+    } else { 
+        scrollUp.classList.remove('show-scroll')
     }
-});
+}
+window.addEventListener('scroll', scrollUp)
 
-/* Scroll Sections Active Link */
+/*============= Shadow Header after scroll =============*/
+
+function scrollHeader() {
+    const nav = document.getElementById('header');
+    // When the scroll is greater than 50 viewport height, add the scroll-header class
+    if (window.scrollY >= 50) { 
+        nav.classList.add('scroll-header');
+    } else { 
+        nav.classList.remove('scroll-header');
+    }
+}
+window.addEventListener('scroll', scrollHeader)
+
+/*=============  Nav Sections Active Link =============*/
 
 const sections = document.querySelectorAll('section[id]')
 
@@ -150,33 +146,118 @@ function scrollActive() {
 }
 window.addEventListener('scroll', scrollActive)
 
-/* Change Background Header */
+/*============= Dark Light Mode =============*/
 
-function scrollHeader() {
-    const nav = document.getElementById('header')
-    //When the scroll is greater than 80 viewport height, add the scroll-header class
-    if (this.scrollY >= 80) { 
-        nav.classList.add('scroll-header');
-    } else { 
-        nav.classList.remove('scroll-header')
-    }
+// Check if dark mode is enabled
+// if it's enabled, we turn it off, if it's disabled, we turn it on
+// Add or Remove the class dark-theme to the body
+// Update darkMode in the localStorage
+
+let darkMode = localStorage.getItem("darkMode");
+const darkModeToggle = document.querySelector('#theme-button');
+
+const enableDarkMode = () => {
+    document.body.classList.add("dark-theme");
+    darkModeToggle.classList.remove('uil-moon')
+    darkModeToggle.classList.add('uil-sun');
+    localStorage.setItem("darkMode", "enabled");
+};
+
+const disableDarkMode = () => {
+    document.body.classList.remove("dark-theme");
+    darkModeToggle.classList.remove('uil-sun');
+    darkModeToggle.classList.add('uil-moon');
+    localStorage.setItem("darkMode", null);
+};
+
+if (darkMode === "enabled") {
+    enableDarkMode();
 }
-window.addEventListener('scroll', scrollHeader)
 
-/* Show Scroll Top */
-
-function scrollUp() {
-    const scrollUp = document.getElementById('scroll-up')
-    //When the scroll is higher than 560 viewport height, add the show-scroll class
-    if (this.scrollY >= 560) { 
-        scrollUp.classList.add('show-scroll');
-    } else { 
-        scrollUp.classList.remove('show-scroll')
-    }
+if (darkMode === null) {
+    disableDarkMode();
 }
-window.addEventListener('scroll', scrollUp)
 
-/* Call Phone */
+darkModeToggle.addEventListener("click", () => {
+    darkMode = localStorage.getItem("darkMode");
+    if (darkMode !== "enabled") {
+        darkModeToggle.classList.add('uil-moon')
+        enableDarkMode();
+        console.log(darkMode)
+    } else {
+        darkModeToggle.classList.add('uil-sun')
+        disableDarkMode();
+        console.log(darkMode)
+   }
+});
+
+/*============= Dark Light Mode #2 =============*/
+
+// const darkModeToggle = document.querySelector('#theme-button');
+// const darkTheme = 'dark-theme';
+// const sunIcon = 'uil-sun';
+
+// Previously selected topic (if user selected)
+// const selectedTheme = localStorage.getItem('selected-theme');
+// const selectedIcon = localStorage.getItem('selected-icon');
+
+// We obtain the current theme that the interface has by validating the dark-theme class
+// const getCurrentTheme = () => { document.body.classList.contains(darkTheme) ? 'dark' : 'light'; }
+// const getCurrentIcon = () => { darkModeToggle.classList.contains(sunIcon) ? 'uil-moon' : 'uil-sun'; }
+
+// We validate if user previously chose a topic
+// if (selectedTheme) {
+//     If the validation is fullfilled, we ask what the issue was to know if we activate
+//     document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
+//     darkModeToggle.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove'](sunIcon)
+// }
+
+// Activate / deactivate the theme manually with the button
+// darkModeToggle.addEventListener('click', () => {
+//     Add or remove the dark / icon theme
+//     document.body.classList.toggle(darkTheme)
+//     darkModeToggle.classList.toggle(sunIcon)
+//     We save the theme and the current icon that the user chose
+//     localStorage.setItem('selected-theme', getCurrentTheme())
+//     localStorage.setItem('selected-icon', getCurrentIcon())
+// });
+
+/*============= Portfolio Swiper =============*/
+
+// let swiperPortfolio = new Swiper('.portfolio__container', {
+//     cssMode: true,
+//     loop: true,
+//     navigation: {
+//         nextEl: '.swiper-button-next',
+//         prevEl: '.swiper-button-prev',
+//     },
+//     pagination: {
+//         el: '.swiper-pagination',
+//         clickable: true,
+//     },
+// });
+
+// /*============= Testimonial Swiper =============*/
+
+// let swiperTestimonial = new Swiper('.testimonial__container', {
+//     loop: true,
+//     grabCursor: true,
+//     spaceBetween: 48,
+
+//     pagination: {
+//         el: '.swiper-pagination',
+//         clickable: true,
+//         dynamicBullets: true,
+//     },
+//     breakpoints: {
+//         568: {
+//             slidesPerView: 2,
+//         }
+//     }
+// });
+
+
+/*============= Contact Call Phone =============*/
 
 // function appelPhone() {
 //     var liens = document.getElementsByTagName('a');
@@ -194,33 +275,15 @@ window.addEventListener('scroll', scrollUp)
 // }
 // window.onload = appelPhone();
 
-/* Dark Light Mode */
 
-const themeButton = document.getElementById('theme-button');
-const darkTheme = document.body.classList.add('dark-theme');
-const iconTheme = themeButton.classList.add('uil-sun');
+/*============= Animated Blob =============*/
 
-// Previously selected topic (if user selected)
-const selectedTheme = localStorage.getItem('selected-theme');
-const selectedIcon = localStorage.getItem('selected-icon');
+// // Define an array of colors
+// const colors = ['#B6D2F9','#C981EA','#112b39'];
+// // Select the SVG paths
+// var blobs = document.querySelectorAll("path");
 
-// We obtain the current theme that the interface has by validating the dark-theme class
-const getCurrentTheme = () => { document.body.classList.contains(darkTheme) ? 'dark' : 'light'; }
-const getCurrentIcon = () => { themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'; }
-
-// We validate if user previously chose a topic
-if (selectedTheme) {
-    // If the validation is fullfilled, we ask what the issue was to know if we activate
-    themeButton.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove'](iconTheme)
-    document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
-}
-
-// Activate / deasctivate the theme manually with the button
-themeButton.addEventListener('click', () => {
-    // Add or remove the dark / icon theme
-    document.body.classList.toggle(darkTheme)
-    themeButton.classList.toggle(iconTheme)
-    // We save the theme and the current icon that the user chose
-    localStorage.setItem('selected-theme', getCurrentTheme())
-    localStorage.setItem('selected-icon', getCurrentIcon())
-});
+// // Randomly apply colors to the SVG fill property
+// blobs.forEach(blob => {
+//   blob.style.fill = colors[Math.floor(Math.random() * colors.length)];
+// });
