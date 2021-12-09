@@ -230,6 +230,12 @@ function appelPhone() {
 }
 window.onload = appelPhone();
 
+/*============= Loader =============*/
+
+window.addEventListener('load', () => {
+  document.querySelector('.loader-container').style.display ="none";
+});
+
 /*============= Dark Light Mode #2 =============*/
 
 // const darkModeToggle = document.querySelector('#theme-button');
