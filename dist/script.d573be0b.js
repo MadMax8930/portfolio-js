@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"assets/js/script.js":[function(require,module,exports) {
+})({"js/script.js":[function(require,module,exports) {
 var navMenu = document.getElementById('nav-menu');
 var navToggle = document.getElementById('nav-toggle');
 var navClose = document.getElementById('nav-close');
@@ -212,6 +212,24 @@ modalCloses.forEach(function (modalClose) {
     });
   });
 });
+/*============= Portfolio Swiper =============*/
+
+var swiperPortfolio = new Swiper('.portfolio__container', {
+  // Optional parameters
+  direction: 'horizontal',
+  cssMode: true,
+  loop: true,
+  // Ppagination
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
+  },
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  }
+});
 /*============= Show Scroll Top =============*/
 
 function scrollUp() {
@@ -302,6 +320,26 @@ darkModeToggle.addEventListener("click", function () {
     console.log(darkMode);
   }
 });
+/*============= Contact Call Phone =============*/
+
+function appelPhone() {
+  var liens = document.getElementsByTagName('a');
+
+  for (var i = 0; i < liens.length; ++i) {
+    // boucle de verifier tous les elements (liens) qui ont une class compose
+    // lui viser directement element class compose
+    if (liens[i].className == 'compose') {
+      liens[i].href = "tel:+33695979938";
+
+      liens[i].onclick = function () {
+        window.location(this.href);
+        return false;
+      };
+    }
+  }
+}
+
+window.onload = appelPhone();
 /*============= Dark Light Mode #2 =============*/
 // const darkModeToggle = document.querySelector('#theme-button');
 // const darkTheme = 'dark-theme';
@@ -327,55 +365,15 @@ darkModeToggle.addEventListener("click", function () {
 //     localStorage.setItem('selected-theme', getCurrentTheme())
 //     localStorage.setItem('selected-icon', getCurrentIcon())
 // });
-
-/*============= Contact Call Phone =============*/
-
-function appelPhone() {
-  var liens = document.getElementsByTagName('a');
-
-  for (var i = 0; i < liens.length; ++i) {
-    // boucle de verifier tous les elements (liens) qui ont une class compose
-    // lui viser directement element class compose
-    if (liens[i].className == 'compose') {
-      liens[i].href = "tel:+33695979938";
-
-      liens[i].onclick = function () {
-        window.location(this.href);
-        return false;
-      };
-    }
-  }
-}
-
-window.onload = appelPhone();
-/*============= Portfolio Swiper =============*/
-// let swiperPortfolio = new Swiper('.portfolio__container', {
-//     cssMode: true,
-//     loop: true,
-//     navigation: {
-//         nextEl: '.swiper-button-next',
-//         prevEl: '.swiper-button-prev',
-//     },
-//     pagination: {
-//         el: '.swiper-pagination',
-//         clickable: true,
-//     },
-// });
 // /*============= Testimonial Swiper =============*/
 // let swiperTestimonial = new Swiper('.testimonial__container', {
 //     loop: true,
 //     grabCursor: true,
-//     spaceBetween: 48,
 //     pagination: {
 //         el: '.swiper-pagination',
 //         clickable: true,
 //         dynamicBullets: true,
 //     },
-//     breakpoints: {
-//         568: {
-//             slidesPerView: 2,
-//         }
-//     }
 // });
 
 /*============= Animated Blob =============*/
@@ -415,7 +413,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64938" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54106" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -591,5 +589,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","assets/js/script.js"], null)
-//# sourceMappingURL=/script.c10090b4.js.map
+},{}]},{},["../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/script.js"], null)
+//# sourceMappingURL=/script.d573be0b.js.map

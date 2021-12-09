@@ -99,6 +99,27 @@ modalCloses.forEach((modalClose) => {
     })
 })
 
+/*============= Portfolio Swiper =============*/
+
+const swiperPortfolio = new Swiper('.portfolio__container', {
+  // Optional parameters
+  direction: 'horizontal',
+  cssMode: true,
+  loop: true,
+
+  // Ppagination
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
+
 /*============= Show Scroll Top =============*/
 
 function scrollUp() {
@@ -191,6 +212,24 @@ darkModeToggle.addEventListener("click", () => {
    }
 });
 
+/*============= Contact Call Phone =============*/
+
+function appelPhone() {
+    var liens = document.getElementsByTagName('a');
+    for (var i = 0; i < liens.length; ++i) {
+        // boucle de verifier tous les elements (liens) qui ont une class compose
+        // lui viser directement element class compose
+        if (liens[i].className == 'compose') {
+            liens[i].href = "tel:+33695979938";
+            liens[i].onclick = function () {
+                window.location(this.href);
+                return false;
+            }
+        }
+    }
+}
+window.onload = appelPhone();
+
 /*============= Dark Light Mode #2 =============*/
 
 // const darkModeToggle = document.querySelector('#theme-button');
@@ -222,59 +261,18 @@ darkModeToggle.addEventListener("click", () => {
 //     localStorage.setItem('selected-icon', getCurrentIcon())
 // });
 
-/*============= Portfolio Swiper =============*/
-
-// let swiperPortfolio = new Swiper('.portfolio__container', {
-//     cssMode: true,
-//     loop: true,
-//     navigation: {
-//         nextEl: '.swiper-button-next',
-//         prevEl: '.swiper-button-prev',
-//     },
-//     pagination: {
-//         el: '.swiper-pagination',
-//         clickable: true,
-//     },
-// });
-
 // /*============= Testimonial Swiper =============*/
 
 // let swiperTestimonial = new Swiper('.testimonial__container', {
 //     loop: true,
 //     grabCursor: true,
-//     spaceBetween: 48,
 
 //     pagination: {
 //         el: '.swiper-pagination',
 //         clickable: true,
 //         dynamicBullets: true,
 //     },
-//     breakpoints: {
-//         568: {
-//             slidesPerView: 2,
-//         }
-//     }
 // });
-
-
-/*============= Contact Call Phone =============*/
-
-// function appelPhone() {
-//     var liens = document.getElementsByTagName('a');
-//     for (var i = 0; i < liens.length; ++i) {
-//         // boucle de verifier tous les elements (liens) qui ont une class compose
-//         // lui viser directement element class compose
-//         if (liens[i].className == 'compose') {
-//             liens[i].href = "tel:+33695979938";
-//             liens[i].onclick = function () {
-//                 window.location(this.href);
-//                 return false;
-//             }
-//         }
-//     }
-// }
-// window.onload = appelPhone();
-
 
 /*============= Animated Blob =============*/
 
@@ -287,3 +285,5 @@ darkModeToggle.addEventListener("click", () => {
 // blobs.forEach(blob => {
 //   blob.style.fill = colors[Math.floor(Math.random() * colors.length)];
 // });
+
+

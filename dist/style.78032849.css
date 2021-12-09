@@ -339,9 +339,9 @@ img {
     margin-bottom: var(--mb-2);
 }
 
-.home__scroll {
+/* .home__scroll {
     display: none;
-}
+} */
 
 .home__scroll-button {
     color: var(--first-color);
@@ -756,7 +756,8 @@ img {
 }
 
 .portfolio__img {
-    width: 265px;
+    width: 260px;
+    height: 200px;
     border-radius: 0.5rem;
     justify-self: center;
 }
@@ -791,7 +792,7 @@ img {
     right: -0.5rem;
 }
 
-.swiper-container-horizontal > .swiper-pagination-bullets {
+.swiper-horizontal > .swiper-pagination-bullets {
     bottom: -2.5rem;
 }
 
@@ -1335,3 +1336,6 @@ img {
     }
 }
 
+
+
+/*# sourceMappingURL=/style.78032849.css.map */
