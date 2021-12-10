@@ -284,8 +284,14 @@ window.addEventListener('scroll', scrollActive);
 
 var darkMode = localStorage.getItem("darkMode");
 var darkModeToggle = document.querySelector('#theme-button');
+var deskAnimation = document.querySelector('#desk-animation');
+var sleepAnimation = document.querySelector('#sleep-animation');
 
 var enableDarkMode = function enableDarkMode() {
+  sleepAnimation.classList.add('sleep__animation');
+  deskAnimation.classList.remove('svg__animated');
+  document.getElementById("sleep-animation").style.display = "block";
+  document.getElementById("desk-animation").style.display = "none";
   document.body.classList.add("dark-theme");
   darkModeToggle.classList.remove('uil-moon');
   darkModeToggle.classList.add('uil-sun');
@@ -293,6 +299,10 @@ var enableDarkMode = function enableDarkMode() {
 };
 
 var disableDarkMode = function disableDarkMode() {
+  deskAnimation.classList.add('svg__animated');
+  sleepAnimation.classList.remove('sleep__animation');
+  document.getElementById("desk-animation").style.display = "block";
+  document.getElementById("sleep-animation").style.display = "none";
   document.body.classList.remove("dark-theme");
   darkModeToggle.classList.remove('uil-sun');
   darkModeToggle.classList.add('uil-moon');
@@ -301,9 +311,7 @@ var disableDarkMode = function disableDarkMode() {
 
 if (darkMode === "enabled") {
   enableDarkMode();
-}
-
-if (darkMode === null) {
+} else {
   disableDarkMode();
 }
 
@@ -311,13 +319,15 @@ darkModeToggle.addEventListener("click", function () {
   darkMode = localStorage.getItem("darkMode");
 
   if (darkMode !== "enabled") {
+    document.getElementById("desk-animation").style.display = "none";
+    document.getElementById("sleep-animation").style.display = "block";
     darkModeToggle.classList.add('uil-moon');
     enableDarkMode();
-    console.log(darkMode);
   } else {
+    document.getElementById("sleep-animation").style.display = "none";
+    document.getElementById("desk-animation").style.display = "block";
     darkModeToggle.classList.add('uil-sun');
     disableDarkMode();
-    console.log(darkMode);
   }
 });
 /*============= Contact Call Phone =============*/
@@ -380,16 +390,6 @@ window.addEventListener('load', function () {
 //         dynamicBullets: true,
 //     },
 // });
-
-/*============= Animated Blob =============*/
-// // Define an array of colors
-// const colors = ['#B6D2F9','#C981EA','#112b39'];
-// // Select the SVG paths
-// var blobs = document.querySelectorAll("path");
-// // Randomly apply colors to the SVG fill property
-// blobs.forEach(blob => {
-//   blob.style.fill = colors[Math.floor(Math.random() * colors.length)];
-// });
 },{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -418,7 +418,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54106" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53883" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

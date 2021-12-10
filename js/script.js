@@ -177,40 +177,57 @@ window.addEventListener('scroll', scrollActive)
 let darkMode = localStorage.getItem("darkMode");
 const darkModeToggle = document.querySelector('#theme-button');
 
+const deskAnimation = document.querySelector('#desk-animation');
+const sleepAnimation = document.querySelector('#sleep-animation');
+
 const enableDarkMode = () => {
+    sleepAnimation.classList.add('sleep__animation');
+    deskAnimation.classList.remove('svg__animated');
+    document.getElementById("sleep-animation").style.display = "block";
+    document.getElementById("desk-animation").style.display = "none";
+
     document.body.classList.add("dark-theme");
     darkModeToggle.classList.remove('uil-moon')
     darkModeToggle.classList.add('uil-sun');
+
     localStorage.setItem("darkMode", "enabled");
+
 };
 
 const disableDarkMode = () => {
+    deskAnimation.classList.add('svg__animated');
+    sleepAnimation.classList.remove('sleep__animation');
+    document.getElementById("desk-animation").style.display = "block";
+    document.getElementById("sleep-animation").style.display = "none";
+
     document.body.classList.remove("dark-theme");
     darkModeToggle.classList.remove('uil-sun');
     darkModeToggle.classList.add('uil-moon');
+
     localStorage.setItem("darkMode", null);
 };
 
 if (darkMode === "enabled") {
     enableDarkMode();
-}
-
-if (darkMode === null) {
+} else {
     disableDarkMode();
 }
 
 darkModeToggle.addEventListener("click", () => {
     darkMode = localStorage.getItem("darkMode");
     if (darkMode !== "enabled") {
-        darkModeToggle.classList.add('uil-moon')
+        document.getElementById("desk-animation").style.display = "none";
+        document.getElementById("sleep-animation").style.display = "block";
+        darkModeToggle.classList.add('uil-moon');
         enableDarkMode();
-        console.log(darkMode)
     } else {
-        darkModeToggle.classList.add('uil-sun')
+        document.getElementById("sleep-animation").style.display = "none";
+        document.getElementById("desk-animation").style.display = "block";
+        darkModeToggle.classList.add('uil-sun');
         disableDarkMode();
-        console.log(darkMode)
    }
 });
+
 
 /*============= Contact Call Phone =============*/
 
@@ -279,17 +296,4 @@ window.addEventListener('load', () => {
 //         dynamicBullets: true,
 //     },
 // });
-
-/*============= Animated Blob =============*/
-
-// // Define an array of colors
-// const colors = ['#B6D2F9','#C981EA','#112b39'];
-// // Select the SVG paths
-// var blobs = document.querySelectorAll("path");
-
-// // Randomly apply colors to the SVG fill property
-// blobs.forEach(blob => {
-//   blob.style.fill = colors[Math.floor(Math.random() * colors.length)];
-// });
-
 
