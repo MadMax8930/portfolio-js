@@ -557,7 +557,7 @@ img {
 }
 
 .skills__java {
-    width: 45%;
+    width: 40%;
 }
 
 .skills__mysql {
@@ -565,7 +565,7 @@ img {
 }
 
 .skills__figma {
-    width: 85%;
+    width: 80%;
 }
 
 .skills__adobe {
@@ -573,7 +573,7 @@ img {
 }
 
 .skills__ps{
-    width: 75%;
+    width: 70%;
 }
 
 .skills__vegas{
@@ -2882,7 +2882,7 @@ svg {
 .qualification__data {
     display: grid;
     grid-template-columns: 0.5fr max-content 0.5fr;
-    column-gap: 2rem;
+    column-gap: 0.90rem;
 }
 }
 
