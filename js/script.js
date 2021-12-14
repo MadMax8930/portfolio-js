@@ -297,3 +297,6 @@ window.addEventListener('load', () => {
 //     },
 // });
 
+module.exports = {
+    "minifySvg": false
+  }
