@@ -390,10 +390,6 @@ window.addEventListener('load', function () {
 //         dynamicBullets: true,
 //     },
 // });
-
-module.exports = {
-  "minifySvg": false
-};
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

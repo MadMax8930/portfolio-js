@@ -296,7 +296,3 @@ window.addEventListener('load', () => {
 //         dynamicBullets: true,
 //     },
 // });
-
-module.exports = {
-    "minifySvg": false
-  }
