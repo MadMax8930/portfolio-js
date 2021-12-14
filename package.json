@@ -1,11 +1,19 @@
 {
+  "name": "portfolio",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
   "tags": [
     "swiper"
   ],
-  "name": "Swiper - CSS mode",
   "dependencies": {
     "assets": "^3.0.1",
     "parcel-bundler": "^1.6.1",
     "swiper": "^7.3.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }
+
