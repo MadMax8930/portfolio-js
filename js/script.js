@@ -187,7 +187,7 @@ const enableDarkMode = () => {
     document.getElementById("desk-animation").style.display = "none";
 
     document.body.classList.add("dark-theme");
-    darkModeToggle.classList.remove('uil-moon')
+    darkModeToggle.classList.remove('uil-moon');
     darkModeToggle.classList.add('uil-sun');
 
     localStorage.setItem("darkMode", "enabled");
